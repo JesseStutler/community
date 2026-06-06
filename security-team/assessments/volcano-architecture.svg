@@ -1,120 +1,317 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="820" viewBox="0 0 1100 820">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="700" viewBox="0 0 1180 700" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <title>Volcano Architecture</title>
+
   <defs>
-    <marker id="arrow" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="9" markerHeight="8" orient="auto">
-      <path d="M 0 0 L 10 4 L 0 8 z" fill="#1f2937"/>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#334155"/>
     </marker>
-    <style>
-      text { font-family: Arial, Helvetica, sans-serif; fill: #111827; }
-      .layer { fill: #ffffff; stroke: #111827; stroke-width: 1.6; rx: 22; }
-      .box { fill: #ffffff; stroke: #111827; stroke-width: 1.6; rx: 12; }
-      .blue { fill: #eef5ff; stroke: #2563eb; stroke-width: 1.7; rx: 12; }
-      .yellow { fill: #fff7df; stroke: #f59e0b; stroke-width: 1.7; rx: 12; }
-      .node { fill: #ffffff; stroke: #111827; stroke-width: 1.6; rx: 14; }
-      .section { font-size: 15px; font-weight: 700; }
-      .label { font-size: 18px; font-weight: 700; }
-      .small { font-size: 13px; fill: #374151; }
-      .tiny { font-size: 12px; fill: #374151; }
-      .line { stroke: #1f2937; stroke-width: 1.9; fill: none; marker-end: url(#arrow); }
-      .plain { stroke: #1f2937; stroke-width: 1.9; fill: none; }
-      .hex { fill: #2f6fe4; stroke: #2f6fe4; stroke-width: 1.4; }
-      .hex-light { fill: #eef5ff; stroke: #2563eb; stroke-width: 1.4; }
-      .icon-white { fill: #ffffff; stroke: #ffffff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-    </style>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1d4ed8"/>
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b45309"/>
+    </marker>
+
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.2"/>
+      <feOffset dx="0" dy="1.2" result="off"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.18"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Volcano logo (icon mark from volcano-sh/volcano docs/images/volcano-logo-svg.svg) -->
+    <linearGradient id="vgrad" gradientUnits="userSpaceOnUse" x1="40.88" y1="40" x2="40.88" y2="0">
+      <stop offset="0" stop-color="#EB5520"/>
+      <stop offset="0.2473" stop-color="#EB511F"/>
+      <stop offset="0.5034" stop-color="#EB441D"/>
+      <stop offset="0.7627" stop-color="#EB301A"/>
+      <stop offset="1" stop-color="#EB1616"/>
+    </linearGradient>
+    <symbol id="logo-volcano" viewBox="0 0 82 40">
+      <path fill="url(#vgrad)" d="M34.3,11L29,5.7c-0.1-0.1-0.1-0.3,0-0.4l5.3-5.3c0.1-0.1,0.3-0.1,0.4,0l5.3,5.3c0.1,0.1,0.1,0.3,0,0.4L34.7,11C34.6,11.1,34.4,11.1,34.3,11z M32.9,11.8l-4.6-4.6C28.1,7,28,7,27.9,7.1l-4.6,4.6c-0.1,0.1-0.1,0.3,0,0.4l4.6,4.6c0.1,0.1,0.3,0.1,0.4,0l4.6-4.6C33,12,33,11.9,32.9,11.8z M45.7,11.8l-4.6-4.6C41,7,40.8,7,40.7,7.1l-4.6,4.6c-0.1,0.1-0.1,0.3,0,0.4l4.6,4.6c0.1,0.1,0.3,0.1,0.4,0l4.6-4.6C45.8,12,45.8,11.9,45.7,11.8z M25.8,18.2l-4-4c-0.1-0.1-0.3-0.1-0.4,0l-4,4c-0.1,0.1-0.1,0.3,0,0.4l4,4c0.1,0.1,0.3,0.1,0.4,0l4-4C25.9,18.4,25.9,18.3,25.8,18.2z M38.7,18.2l-4-4c-0.1-0.1-0.3-0.1-0.4,0l-4,4c-0.1,0.1-0.1,0.3,0,0.4l4,4c0.1,0.1,0.3,0.1,0.4,0l4-4C38.8,18.4,38.8,18.3,38.7,18.2z M51.5,18.2l-4-4c-0.1-0.1-0.3-0.1-0.4,0l-4,4c-0.1,0.1-0.1,0.3,0,0.4l4,4c0.1,0.1,0.3,0.1,0.4,0l4-4C51.6,18.4,51.6,18.3,51.5,18.2z M18.8,24.6l-3.4-3.4c-0.1-0.1-0.3-0.1-0.4,0l-3.4,3.4c-0.1,0.1-0.1,0.3,0,0.4l3.4,3.4c0.1,0.1,0.3,0.1,0.4,0l3.4-3.4C18.9,24.9,18.9,24.7,18.8,24.6z M31.6,24.6l-3.4-3.4c-0.1-0.1-0.3-0.1-0.4,0l-3.4,3.4c-0.1,0.1-0.1,0.3,0,0.4l3.4,3.4c0.1,0.1,0.3,0.1,0.4,0l3.4-3.4C31.7,24.9,31.7,24.7,31.6,24.6z M44.5,24.6l-3.4-3.4c-0.1-0.1-0.3-0.1-0.4,0l-3.4,3.4c-0.1,0.1-0.1,0.3,0,0.4l3.4,3.4c0.1,0.1,0.3,0.1,0.4,0l3.4-3.4C44.6,24.9,44.6,24.7,44.5,24.6z M57.3,24.6l-3.4-3.4c-0.1-0.1-0.3-0.1-0.4,0l-3.4,3.4c-0.1,0.1-0.1,0.3,0,0.4l3.4,3.4c0.1,0.1,0.3,0.1,0.4,0l3.4-3.4C57.4,24.9,57.4,24.7,57.3,24.6z M11.8,31L9,28.2c-0.1-0.1-0.3-0.1-0.4,0L5.9,31c-0.1,0.1-0.1,0.3,0,0.4l2.8,2.8c0.1,0.1,0.3,0.1,0.4,0l2.8-2.8C11.9,31.3,11.9,31.1,11.8,31z M24.6,31l-2.8-2.8c-0.1-0.1-0.3-0.1-0.4,0L18.7,31c-0.1,0.1-0.1,0.3,0,0.4l2.8,2.8c0.1,0.1,0.3,0.1,0.4,0l2.8-2.8C24.7,31.3,24.7,31.1,24.6,31z M37.4,31l-2.8-2.8c-0.1-0.1-0.3-0.1-0.4,0L31.5,31c-0.1,0.1-0.1,0.3,0,0.4l2.8,2.8c0.1,0.1,0.3,0.1,0.4,0l2.8-2.8C37.5,31.3,37.5,31.1,37.4,31z M50.2,31l-2.8-2.8c-0.1-0.1-0.3-0.1-0.4,0L44.3,31c-0.1,0.1-0.1,0.3,0,0.4l2.8,2.8c0.1,0.1,0.3,0.1,0.4,0l2.8-2.8C50.3,31.3,50.3,31.1,50.2,31z M63.1,31l-2.8-2.8c-0.1-0.1-0.3-0.1-0.4,0L57.2,31c-0.1,0.1-0.1,0.3,0,0.4l2.8,2.8c0.1,0.1,0.3,0.1,0.4,0l2.8-2.8C63.2,31.3,63.2,31.1,63.1,31z M4.7,37.4l-2.1-2.1c-0.1-0.1-0.3-0.1-0.4,0l-2.1,2.1c-0.1,0.1-0.1,0.3,0,0.4l2.1,2.1c0.1,0.1,0.3,0.1,0.4,0l2.1-2.1C4.8,37.7,4.8,37.5,4.7,37.4z M17.5,37.4l-2.1-2.1c-0.1-0.1-0.3-0.1-0.4,0l-2.1,2.1c-0.1,0.1-0.1,0.3,0,0.4l2.1,2.1c0.1,0.1,0.3,0.1,0.4,0l2.1-2.1C17.6,37.7,17.6,37.5,17.5,37.4z M30.4,37.4l-2.1-2.1c-0.1-0.1-0.3-0.1-0.4,0l-2.1,2.1c-0.1,0.1-0.1,0.3,0,0.4l2.1,2.1c0.1,0.1,0.3,0.1,0.4,0l2.1-2.1C30.5,37.7,30.5,37.5,30.4,37.4z M43.2,37.4l-2.1-2.1c-0.1-0.1-0.3-0.1-0.4,0l-2.1,2.1c-0.1,0.1-0.1,0.3,0,0.4l2.1,2.1c0.1,0.1,0.3,0.1,0.4,0l2.1-2.1C43.3,37.6,43.3,37.5,43.2,37.4z M56,37.4l-2.1-2.1c-0.1-0.1-0.3-0.1-0.4,0l-2.1,2.1c-0.1,0.1-0.1,0.3,0,0.4l2.1,2.1c0.1,0.1,0.3,0.1,0.4,0l2.1-2.1C56.1,37.6,56.1,37.5,56,37.4z M68.9,37.4l-2.1-2.1c-0.1-0.1-0.3-0.1-0.4,0l-2.1,2.1c-0.1,0.1-0.1,0.3,0,0.4l2.1,2.1c0.1,0.1,0.3,0.1,0.4,0l2.1-2.1C69,37.6,69,37.5,68.9,37.4z M47.5,11l5.3-5.3c0.1-0.1,0.1-0.3,0-0.4l-5.3-5.3c-0.1-0.1-0.3-0.1-0.4,0l-5.3,5.3c-0.1,0.1-0.1,0.3,0,0.4l5.3,5.3C47.2,11.1,47.4,11.1,47.5,11z M53.9,16.8l4.6-4.6c0.1-0.1,0.1-0.3,0-0.4l-4.6-4.6c-0.1-0.1-0.3-0.1-0.4,0l-4.6,4.6c-0.1,0.1-0.1,0.3,0,0.4l4.6,4.6C53.6,16.9,53.8,16.9,53.9,16.8z M60.3,22.6l4-4c0.1-0.1,0.1-0.3,0-0.4l-4-4c-0.1-0.1-0.3-0.1-0.4,0l-4,4c-0.1,0.1-0.1,0.3,0,0.4l4,4C60,22.7,60.2,22.7,60.3,22.6z M66.7,28.3l3.4-3.4c0.1-0.1,0.1-0.3,0-0.4l-3.4-3.4c-0.1-0.1-0.3-0.1-0.4,0L63,24.6c-0.1,0.1-0.1,0.3,0,0.4l3.4,3.4C66.4,28.5,66.6,28.5,66.7,28.3z M73.1,34.1l2.8-2.8c0.1-0.1,0.1-0.3,0-0.4l-2.8-2.8c-0.1-0.1-0.3-0.1-0.4,0L70,31c-0.1,0.1-0.1,0.3,0,0.4l2.8,2.8C72.9,34.2,73,34.2,73.1,34.1z M79.6,39.9l2.1-2.1c0.1-0.1,0.1-0.3,0-0.4l-2.1-2.1c-0.1-0.1-0.3-0.1-0.4,0L77,37.4c-0.1,0.1-0.1,0.3,0,0.4l2.1,2.1C79.3,40,79.4,40,79.6,39.9z"/>
+    </symbol>
+
+    <!-- Kubernetes logo: heptagon + 7-spoke ship's-wheel mark (brand blue #326CE5) -->
+    <symbol id="logo-k8s" viewBox="0 0 100 100">
+      <polygon fill="#326CE5" points="50,3 92,26 96,72 71,98 29,98 4,72 8,26"/>
+      <g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round">
+        <circle cx="50" cy="52" r="19"/>
+        <line x1="50" y1="52" x2="50" y2="24"/>
+        <line x1="50" y1="52" x2="71.1" y2="35.5"/>
+        <line x1="50" y1="52" x2="76.0" y2="58.0"/>
+        <line x1="50" y1="52" x2="61.7" y2="75.6"/>
+        <line x1="50" y1="52" x2="38.3" y2="75.6"/>
+        <line x1="50" y1="52" x2="24.0" y2="58.0"/>
+        <line x1="50" y1="52" x2="28.9" y2="35.5"/>
+      </g>
+      <g fill="#fff">
+        <circle cx="50" cy="24" r="5"/>
+        <circle cx="71.1" cy="35.5" r="5"/>
+        <circle cx="76.0" cy="58.0" r="5"/>
+        <circle cx="61.7" cy="75.6" r="5"/>
+        <circle cx="38.3" cy="75.6" r="5"/>
+        <circle cx="24.0" cy="58.0" r="5"/>
+        <circle cx="28.9" cy="35.5" r="5"/>
+      </g>
+      <circle cx="50" cy="52" r="5" fill="#fff"/>
+      <circle cx="50" cy="52" r="2.5" fill="#326CE5"/>
+    </symbol>
   </defs>
 
-  <rect width="1100" height="820" fill="#ffffff"/>
+  <!-- Background -->
+  <rect width="1180" height="700" fill="#f8fafc"/>
 
-  <rect x="70" y="36" width="960" height="126" class="layer"/>
-  <text x="100" y="66" class="section">Workload entry</text>
+  <!-- ================ Layer 1: Workload entry ================ -->
+  <rect x="40" y="20" width="1100" height="110" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="56" y="42" font-size="12" font-weight="700" fill="#475569" letter-spacing="0.5">WORKLOAD ENTRY</text>
 
-  <rect x="120" y="90" width="240" height="50" class="box"/>
-  <polygon points="145,108 160,100 175,108 175,124 160,132 145,124" class="hex"/>
-  <path d="M152 117 h16 M160 109 v16" class="icon-white"/>
-  <text x="245" y="120" text-anchor="middle" class="small">kubectl / vcctl / clients</text>
+  <!-- Users & clients -->
+  <g filter="url(#shadow)">
+    <rect x="68" y="58" width="320" height="58" rx="8" fill="#ffffff" stroke="#475569" stroke-width="1.4"/>
+    <use href="#logo-k8s" x="84" y="72" width="30" height="30"/>
+    <text x="128" y="82" font-size="14" font-weight="700" fill="#0f172a">Users &amp; clients</text>
+    <text x="128" y="102" font-size="11" fill="#475569">kubectl · vcctl · CI/CD · custom controllers</text>
+  </g>
 
-  <rect x="430" y="90" width="240" height="50" class="box"/>
-  <polygon points="455,108 470,100 485,108 485,124 470,132 455,124" class="hex"/>
-  <rect x="462" y="110" width="16" height="13" class="icon-white" rx="2"/>
-  <text x="550" y="114" text-anchor="middle" class="small">Frameworks / platforms</text>
-  <text x="550" y="132" text-anchor="middle" class="tiny">Ray, Spark, Flink, Kubeflow</text>
+  <!-- Frameworks (brand-colored chips with mark icons) -->
+  <g filter="url(#shadow)">
+    <rect x="408" y="58" width="320" height="58" rx="8" fill="#ffffff" stroke="#475569" stroke-width="1.4"/>
+    <text x="420" y="76" font-size="13" font-weight="700" fill="#0f172a">AI / Data / HPC frameworks</text>
+    <g font-size="10" font-weight="700" fill="#ffffff">
+      <!-- Ray: Anyscale-style blue ring mark -->
+      <g transform="translate(416,86)">
+        <rect width="40" height="22" rx="4" fill="#028CF3"/>
+        <circle cx="10" cy="11" r="4.5" fill="#fff"/>
+        <circle cx="10" cy="11" r="2" fill="#028CF3"/>
+        <text x="28" y="15" text-anchor="middle">Ray</text>
+      </g>
+      <!-- Spark: orange 8-point spark mark -->
+      <g transform="translate(460,86)">
+        <rect width="50" height="22" rx="4" fill="#E25A1C"/>
+        <path d="M10 4 L11.5 9.5 L17 11 L11.5 12.5 L10 18 L8.5 12.5 L3 11 L8.5 9.5 Z" fill="#fff"/>
+        <text x="32" y="15" text-anchor="middle">Spark</text>
+      </g>
+      <!-- Flink: teal stream wave -->
+      <g transform="translate(514,86)">
+        <rect width="46" height="22" rx="4" fill="#00B9DD"/>
+        <path d="M3 13 Q6.5 7 10 11 T17 9" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <text x="30" y="15" text-anchor="middle">Flink</text>
+      </g>
+      <!-- Kubeflow: white mini-heptagon (k8s family) -->
+      <g transform="translate(564,86)">
+        <rect width="60" height="22" rx="4" fill="#326CE5"/>
+        <polygon points="10,3 16,6 17,13 13,19 7,19 3,13 4,6" fill="#fff"/>
+        <text x="38" y="15" text-anchor="middle">Kubeflow</text>
+      </g>
+      <!-- PyTorch: orange flame -->
+      <g transform="translate(628,86)">
+        <rect width="56" height="22" rx="4" fill="#EE4C2C"/>
+        <path d="M10 3 Q14.5 8 14.5 12.5 Q14.5 17 10 19 Q5.5 17 5.5 12.5 Q5.5 9 8 6 Z" fill="#fff"/>
+        <text x="36" y="15" text-anchor="middle">PyTorch</text>
+      </g>
+      <!-- TensorFlow: orange stacked T mark -->
+      <g transform="translate(688,86)">
+        <rect width="32" height="22" rx="4" fill="#FF6F00"/>
+        <g fill="#fff"><rect x="4" y="5" width="10" height="2.6"/><rect x="7.7" y="5" width="2.6" height="13"/></g>
+        <text x="24" y="15" text-anchor="middle">TF</text>
+      </g>
+    </g>
+  </g>
 
-  <rect x="740" y="90" width="240" height="50" class="box"/>
-  <polygon points="765,108 780,100 795,108 795,124 780,132 765,124" class="hex"/>
-  <path d="M772 123 l8 -16 l8 16" class="icon-white" fill="none"/>
-  <text x="860" y="114" text-anchor="middle" class="small">Volcano subprojects</text>
-  <text x="860" y="132" text-anchor="middle" class="tiny">Kthena, AgentCube, Volcano Global</text>
+  <!-- Volcano subprojects -->
+  <g filter="url(#shadow)">
+    <rect x="748" y="58" width="364" height="58" rx="8" fill="#ffffff" stroke="#475569" stroke-width="1.4"/>
+    <use href="#logo-volcano" x="762" y="78" width="48" height="24"/>
+    <text x="820" y="78" font-size="13" font-weight="700" fill="#0f172a">Volcano subprojects</text>
+    <text x="820" y="102" font-size="11" fill="#475569">Kthena · AgentCube · Volcano Global · Dashboard</text>
+  </g>
 
-  <rect x="70" y="214" width="960" height="210" class="layer"/>
-  <text x="100" y="244" class="section">Kubernetes API boundary</text>
+  <!-- ================ Layer 2: Kubernetes API boundary ================ -->
+  <rect x="40" y="148" width="1100" height="216" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="56" y="170" font-size="12" font-weight="700" fill="#475569" letter-spacing="0.5">KUBERNETES API BOUNDARY</text>
 
-  <rect x="140" y="282" width="250" height="50" class="blue"/>
-  <text x="265" y="313" text-anchor="middle" class="label">Kubernetes API Server</text>
+  <!-- API server compound (contains CRDs persisted via etcd) -->
+  <g filter="url(#shadow)">
+    <rect x="70" y="182" width="650" height="162" rx="10" fill="#ecfeff" stroke="#0e7490" stroke-width="1.6"/>
+    <use href="#logo-k8s" x="82" y="194" width="40" height="40"/>
+    <text x="132" y="212" font-size="16" font-weight="700" fill="#0f172a">Kubernetes API Server</text>
+    <text x="132" y="232" font-size="11" fill="#475569">AuthN / AuthZ, persistence, watch via etcd</text>
+    <line x1="80" y1="252" x2="710" y2="252" stroke="#0e7490" stroke-opacity="0.35" stroke-width="1"/>
+    <text x="80" y="270" font-size="10" font-weight="700" fill="#0e7490" letter-spacing="0.4">VOLCANO CUSTOM RESOURCES</text>
+    <!-- CRD chips: 5 chips, width 120, gap 10, starting x=80; centers 140, 270, 400, 530, 660 -->
+    <g font-size="12">
+      <g><rect x="80" y="284" width="120" height="34" rx="6" fill="#fef3c7" stroke="#b45309"/>
+         <use href="#logo-volcano" x="89" y="295" width="22" height="11"/>
+         <text x="117" y="306" font-weight="700" fill="#7c2d12">VolcanoJob</text></g>
+      <g><rect x="210" y="284" width="120" height="34" rx="6" fill="#fef3c7" stroke="#b45309"/>
+         <use href="#logo-volcano" x="219" y="295" width="22" height="11"/>
+         <text x="247" y="306" font-weight="700" fill="#7c2d12">PodGroup</text></g>
+      <g><rect x="340" y="284" width="120" height="34" rx="6" fill="#fef3c7" stroke="#b45309"/>
+         <use href="#logo-volcano" x="370" y="295" width="22" height="11"/>
+         <text x="398" y="306" font-weight="700" fill="#7c2d12">Queue</text></g>
+      <g><rect x="470" y="284" width="120" height="34" rx="6" fill="#fef3c7" stroke="#b45309"/>
+         <use href="#logo-volcano" x="479" y="295" width="22" height="11"/>
+         <text x="507" y="306" font-weight="700" fill="#7c2d12">HyperNode</text></g>
+      <g><rect x="600" y="284" width="120" height="34" rx="6" fill="#fef3c7" stroke="#b45309"/>
+         <use href="#logo-volcano" x="609" y="295" width="22" height="11"/>
+         <text x="637" y="306" font-weight="700" fill="#7c2d12">NodeShard</text></g>
+    </g>
+  </g>
 
-  <rect x="710" y="282" width="250" height="50" class="blue"/>
-  <text x="835" y="313" text-anchor="middle" class="label">volcano-admission</text>
+  <!-- volcano-admission -->
+  <g filter="url(#shadow)">
+    <rect x="750" y="200" width="360" height="80" rx="8" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.6"/>
+    <use href="#logo-volcano" x="762" y="218" width="40" height="20"/>
+    <text x="812" y="232" font-size="15" font-weight="700" fill="#0f172a">volcano-admission</text>
+    <text x="762" y="262" font-size="11" fill="#475569">Validating &amp; mutating webhooks (TLS) for Volcano CRDs</text>
+  </g>
 
-  <rect x="170" y="368" width="130" height="34" class="yellow"/>
-  <text x="235" y="390" text-anchor="middle" class="tiny">VolcanoJob</text>
-  <rect x="320" y="368" width="130" height="34" class="yellow"/>
-  <text x="385" y="390" text-anchor="middle" class="tiny">PodGroup</text>
-  <rect x="470" y="368" width="130" height="34" class="yellow"/>
-  <text x="535" y="390" text-anchor="middle" class="tiny">Queue</text>
-  <rect x="620" y="368" width="130" height="34" class="yellow"/>
-  <text x="685" y="390" text-anchor="middle" class="tiny">HyperNode</text>
-  <rect x="770" y="368" width="130" height="34" class="yellow"/>
-  <text x="835" y="390" text-anchor="middle" class="tiny">NodeShard</text>
+  <!-- AdmissionReview round-trip between apiserver and admission -->
+  <g fill="none" stroke="#1d4ed8" stroke-width="1.6">
+    <path d="M720 232 H750" marker-end="url(#arrow-blue)"/>
+    <path d="M750 254 H720" marker-end="url(#arrow-blue)"/>
+  </g>
+  <text x="820" y="194" font-size="11" fill="#1d4ed8" font-weight="600">AdmissionReview</text>
 
-  <rect x="70" y="488" width="960" height="132" class="layer"/>
-  <text x="100" y="518" class="section">Volcano control plane</text>
+  <!-- ================ Layer 3: Volcano control plane ================ -->
+  <rect x="40" y="378" width="1100" height="120" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="56" y="400" font-size="12" font-weight="700" fill="#475569" letter-spacing="0.5">VOLCANO CONTROL PLANE</text>
 
-  <rect x="154" y="552" width="230" height="46" class="blue"/>
-  <text x="269" y="581" text-anchor="middle" class="small">vc-controller-manager</text>
+  <!-- vc-controller-manager (center 192) -->
+  <g filter="url(#shadow)">
+    <rect x="68" y="412" width="248" height="72" rx="8" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.6"/>
+    <use href="#logo-volcano" x="80" y="426" width="32" height="16"/>
+    <text x="122" y="440" font-size="14" font-weight="700" fill="#0f172a">vc-controller-manager</text>
+    <text x="80" y="462" font-size="11" fill="#475569"><tspan x="80">Reconciles Volcano CRDs and</tspan><tspan x="80" dy="14">workload lifecycle.</tspan></text>
+  </g>
 
-  <rect x="435" y="552" width="230" height="46" class="blue"/>
-  <text x="550" y="581" text-anchor="middle" class="small">vc-scheduler</text>
+  <!-- vc-scheduler (center 460) -->
+  <g filter="url(#shadow)">
+    <rect x="336" y="412" width="248" height="72" rx="8" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.6"/>
+    <use href="#logo-volcano" x="348" y="426" width="32" height="16"/>
+    <text x="390" y="440" font-size="14" font-weight="700" fill="#0f172a">vc-scheduler</text>
+    <text x="348" y="462" font-size="11" fill="#475569"><tspan x="348">Batch &amp; gang scheduler for</tspan><tspan x="348" dy="14">AI / Big Data / HPC.</tspan></text>
+  </g>
 
-  <rect x="716" y="552" width="230" height="46" class="blue"/>
-  <text x="831" y="581" text-anchor="middle" class="small">Agent Scheduler</text>
+  <!-- agent-scheduler (center 728) -->
+  <g filter="url(#shadow)">
+    <rect x="604" y="412" width="248" height="72" rx="8" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.6"/>
+    <use href="#logo-volcano" x="616" y="426" width="32" height="16"/>
+    <text x="658" y="440" font-size="14" font-weight="700" fill="#0f172a">agent-scheduler</text>
+    <text x="616" y="468" font-size="11" fill="#475569">Fast-path scheduler for AI Agent Pods.</text>
+  </g>
 
-  <rect x="70" y="690" width="960" height="108" class="layer"/>
-  <text x="100" y="720" class="section">Kubernetes nodes</text>
+  <!-- sharding-controller (center 992) -->
+  <g filter="url(#shadow)">
+    <rect x="872" y="412" width="240" height="72" rx="8" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.6"/>
+    <use href="#logo-volcano" x="884" y="426" width="32" height="16"/>
+    <text x="926" y="440" font-size="14" font-weight="700" fill="#0f172a">sharding-controller</text>
+    <text x="884" y="468" font-size="11" fill="#475569">Partitions cluster nodes across schedulers.</text>
+  </g>
 
-  <rect x="135" y="739" width="260" height="44" class="node"/>
-  <text x="177" y="766" text-anchor="middle" class="tiny">Node</text>
-  <polygon points="247,750 260,743 273,750 273,764 260,771 247,764" class="hex"/>
-  <rect x="254" y="755" width="12" height="10" class="icon-white" rx="1"/>
-  <text x="296" y="766" text-anchor="middle" class="tiny">Pods</text>
-  <polygon points="340,750 353,743 366,750 366,764 353,771 340,764" class="hex-light"/>
-  <text x="353" y="766" text-anchor="middle" class="tiny">V</text>
+  <!-- ================ Layer 4: Kubernetes nodes ================ -->
+  <rect x="40" y="518" width="1100" height="160" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="56" y="540" font-size="12" font-weight="700" fill="#475569" letter-spacing="0.5">KUBERNETES NODES</text>
 
-  <rect x="420" y="739" width="260" height="44" class="node"/>
-  <text x="462" y="766" text-anchor="middle" class="tiny">Node</text>
-  <polygon points="532,750 545,743 558,750 558,764 545,771 532,764" class="hex"/>
-  <rect x="539" y="755" width="12" height="10" class="icon-white" rx="1"/>
-  <text x="581" y="766" text-anchor="middle" class="tiny">Pods</text>
-  <polygon points="625,750 638,743 651,750 651,764 638,771 625,764" class="hex-light"/>
-  <text x="638" y="766" text-anchor="middle" class="tiny">V</text>
+  <!-- Node 1 (center 236) -->
+  <g filter="url(#shadow)">
+    <rect x="68" y="554" width="336" height="108" rx="8" fill="#ffffff" stroke="#0e7490" stroke-width="1.4"/>
+    <use href="#logo-k8s" x="82" y="568" width="28" height="28"/>
+    <text x="120" y="580" font-size="13" font-weight="700" fill="#0f172a">Node</text>
+    <text x="120" y="596" font-size="11" fill="#475569">kubelet · container runtime</text>
+    <g>
+      <rect x="82" y="612" width="100" height="36" rx="6" fill="#ecfeff" stroke="#0e7490"/>
+      <use href="#logo-k8s" x="92" y="618" width="22" height="22"/>
+      <text x="146" y="635" font-size="11" font-weight="700" fill="#0f172a">Pods</text>
+    </g>
+    <g>
+      <rect x="196" y="612" width="190" height="36" rx="6" fill="#fff7ed" stroke="#EB1616"/>
+      <use href="#logo-volcano" x="204" y="624" width="24" height="12"/>
+      <text x="234" y="635" font-size="11" font-weight="700" fill="#0f172a">vc-agent (optional)</text>
+    </g>
+  </g>
 
-  <rect x="705" y="739" width="260" height="44" class="node"/>
-  <text x="747" y="766" text-anchor="middle" class="tiny">Node</text>
-  <polygon points="817,750 830,743 843,750 843,764 830,771 817,764" class="hex"/>
-  <rect x="824" y="755" width="12" height="10" class="icon-white" rx="1"/>
-  <text x="866" y="766" text-anchor="middle" class="tiny">Pods</text>
-  <polygon points="910,750 923,743 936,750 936,764 923,771 910,764" class="hex-light"/>
-  <text x="923" y="766" text-anchor="middle" class="tiny">V</text>
+  <!-- Node 2 (center 590) -->
+  <g filter="url(#shadow)">
+    <rect x="422" y="554" width="336" height="108" rx="8" fill="#ffffff" stroke="#0e7490" stroke-width="1.4"/>
+    <use href="#logo-k8s" x="436" y="568" width="28" height="28"/>
+    <text x="474" y="580" font-size="13" font-weight="700" fill="#0f172a">Node</text>
+    <text x="474" y="596" font-size="11" fill="#475569">kubelet · container runtime</text>
+    <g>
+      <rect x="436" y="612" width="100" height="36" rx="6" fill="#ecfeff" stroke="#0e7490"/>
+      <use href="#logo-k8s" x="446" y="618" width="22" height="22"/>
+      <text x="500" y="635" font-size="11" font-weight="700" fill="#0f172a">Pods</text>
+    </g>
+    <g>
+      <rect x="550" y="612" width="190" height="36" rx="6" fill="#fff7ed" stroke="#EB1616"/>
+      <use href="#logo-volcano" x="558" y="624" width="24" height="12"/>
+      <text x="588" y="635" font-size="11" font-weight="700" fill="#0f172a">vc-agent (optional)</text>
+    </g>
+  </g>
 
-  <path d="M240 140 V184 H550 V214" class="line"/>
-  <path d="M550 140 V214" class="line"/>
-  <path d="M860 140 V184 H550 V214" class="line"/>
+  <!-- Node 3 (center 944) -->
+  <g filter="url(#shadow)">
+    <rect x="776" y="554" width="336" height="108" rx="8" fill="#ffffff" stroke="#0e7490" stroke-width="1.4"/>
+    <use href="#logo-k8s" x="790" y="568" width="28" height="28"/>
+    <text x="828" y="580" font-size="13" font-weight="700" fill="#0f172a">Node</text>
+    <text x="828" y="596" font-size="11" fill="#475569">kubelet · container runtime</text>
+    <g>
+      <rect x="790" y="612" width="100" height="36" rx="6" fill="#ecfeff" stroke="#0e7490"/>
+      <use href="#logo-k8s" x="800" y="618" width="22" height="22"/>
+      <text x="854" y="635" font-size="11" font-weight="700" fill="#0f172a">Pods</text>
+    </g>
+    <g>
+      <rect x="904" y="612" width="190" height="36" rx="6" fill="#fff7ed" stroke="#EB1616"/>
+      <use href="#logo-volcano" x="912" y="624" width="24" height="12"/>
+      <text x="942" y="635" font-size="11" font-weight="700" fill="#0f172a">vc-agent (optional)</text>
+    </g>
+  </g>
 
-  <path d="M550 214 V252" class="plain"/>
-  <path d="M550 252 H265 V282" class="line"/>
-  <path d="M550 252 H835 V282" class="line"/>
-  <path d="M265 332 V350 H535 V368" class="line"/>
-  <path d="M835 332 V350 H535 V368" class="line"/>
+  <!-- ================ Connectors ================ -->
 
-  <path d="M535 402 V456 H550 V488" class="line"/>
-  <path d="M550 620 V690" class="line"/>
-  <path d="M269 598 V648 H550 V690" class="line"/>
-  <path d="M831 598 V648 H550 V690" class="line"/>
+  <!-- L1 → bus(y=140) → apiserver top (x=395, y=182) -->
+  <g fill="none" stroke="#334155" stroke-width="1.5">
+    <path d="M228 116 V140"/>
+    <path d="M568 116 V140"/>
+    <path d="M930 116 V140"/>
+    <path d="M228 140 H930"/>
+    <path d="M395 140 V182" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- apiserver → control plane bus (y=372) → 4 component tops -->
+  <g fill="none" stroke="#1d4ed8" stroke-width="1.6">
+    <path d="M395 344 V372"/>
+    <path d="M192 372 H992"/>
+    <path d="M192 372 V412" marker-end="url(#arrow-blue)"/>
+    <path d="M460 372 V412" marker-end="url(#arrow-blue)"/>
+    <path d="M728 372 V412" marker-end="url(#arrow-blue)"/>
+    <path d="M992 372 V412" marker-end="url(#arrow-blue)"/>
+  </g>
+  <text x="235" y="392" font-size="11" fill="#1d4ed8" font-weight="600">watch / list / status update</text>
+
+  <!-- sharding-controller writes NodeShard -->
+  <g fill="none" stroke="#b45309" stroke-width="1.3" stroke-dasharray="5 3">
+    <path d="M900 412 V354 H700 V318" marker-end="url(#arrow-amber)"/>
+  </g>
+  <text x="706" y="338" font-size="10" fill="#b45309" font-weight="700">writes</text>
+
+  <!-- agent-scheduler reads NodeShard -->
+  <g fill="none" stroke="#475569" stroke-width="1.2" stroke-dasharray="4 3">
+    <path d="M780 412 V347 H620 V318" marker-end="url(#arrow)"/>
+  </g>
+  <text x="598" y="338" font-size="10" fill="#475569" font-weight="700">reads</text>
+
+  <!-- Control plane → nodes bus (y=510); arrows from control plane bottoms up to bus, then down to node tops -->
+  <g fill="none" stroke="#334155" stroke-width="1.5">
+    <path d="M192 484 V510"/>
+    <path d="M460 484 V510"/>
+    <path d="M728 484 V510"/>
+    <path d="M992 484 V510"/>
+    <path d="M192 510 H992"/>
+    <path d="M236 510 V554" marker-end="url(#arrow)"/>
+    <path d="M590 510 V554" marker-end="url(#arrow)"/>
+    <path d="M944 510 V554" marker-end="url(#arrow)"/>
+  </g>
+  <text x="248" y="504" font-size="11" fill="#334155" font-weight="600">bind Pods to nodes</text>
 </svg>
