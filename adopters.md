@@ -37,3 +37,4 @@ please feel free to add yourself into the following list by a pull request. Ther
 | [Aumovio](https://aumovio.com/) | [@hajnalmt](https://github.com/hajnalmt) | Production | Multi-tenancy management with Queues, leveraging reclaim and preemption for K8s and Kubeflow jobs. |
 | [Feedzai](https://www.feedzai.com/) | [@devzizu](https://github.com/devzizu) | Production | Leveraging Volcano batch-scheduling and multi-tenancy capabilities to run large-scale AI/ML workloads efficiently. |
 | [Zuoyebang](https://zuoyebang.com/) | [@ruanwenjun](https://github.com/ruanwenjun) | Production | Using Volcano to schedule Spark workloads on Kubernetes with queue management, gang scheduling, and job priorities. |
+| [Pinterest](https://www.pinterest.com/) | [@lixmgl](https://github.com/lixmgl) | Production | Using Volcano to queue, preempt, and reclaim Ray jobs on K8s. |
